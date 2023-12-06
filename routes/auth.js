@@ -18,7 +18,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { username, password } = req.body;
+    const { username, password , name} = req.body;
 
     try {
       let user = await User.findOne({ username });
@@ -30,6 +30,7 @@ router.post(
       user = new User({
         username,
         password,
+        name
       });
 
       await user.save();
@@ -42,7 +43,7 @@ router.post(
 
       jwt.sign(payload, 'yourSecretKey', { expiresIn: 3600 }, (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ token , name: user.name , email : user.username});
       });
     } catch (err) {
       console.error(err.message);
@@ -91,7 +92,7 @@ router.post(
 
       jwt.sign(payload, 'yourSecretKey', { expiresIn: 3600 }, (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ token , name: user.name , email : user.username});
       });
     } catch (err) {
       console.error(err.message);
