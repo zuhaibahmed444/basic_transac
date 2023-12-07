@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const taskRoutes = require('./routes/tasks');
+const cors = require("cors");
 
 const app = express();
 
@@ -16,6 +17,7 @@ mongoose
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.error('MongoDB Connection Error:', err));
 
+app.use(cors());
 // Routes
 app.use('/auth', authRoutes);
 app.use('/tasks', taskRoutes);
