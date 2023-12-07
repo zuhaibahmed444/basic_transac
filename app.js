@@ -20,7 +20,7 @@ mongoose
 app.use(cors());
 // Routes
 app.use('/auth', authRoutes);
-app.use('/tasks', taskRoutes);
+app.use('/trans', taskRoutes);
 
 // Server Setup
 const PORT = process.env.PORT || 3000;

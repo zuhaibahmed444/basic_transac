@@ -6,14 +6,15 @@ const authMiddleware = require('../middleware/auth');
 
 // Create Task
 router.post('/create', authMiddleware, async (req, res) => {
-  const { description , amount , transactionType} = req.body;
+  const { description , amount , transactionType , completed} = req.body;
 
   try {
     const newTask = new Task({
       user: req.user.id,
       description,
       amount,
-      transactionType
+      transactionType,
+      completed
     });
 
     const task = await newTask.save();
