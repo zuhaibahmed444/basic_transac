@@ -78,7 +78,7 @@ router.delete('/delete/:id', authMiddleware, async (req, res) => {
       return res.status(401).json({ msg: 'Not authorized' });
     }
 
-    await Task.findByIdAndRemove(req.params.id);
+    await Task.findByIdAndDelete(req.params.id);
 
     res.json({ msg: 'Task removed' });
   } catch (err) {
